@@ -14,7 +14,132 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      daily_notes: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          note_date: string
+          title: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          note_date?: string
+          title?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          note_date?: string
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      daily_photos: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          title: string | null
+          updated_at: string
+          upload_date: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          title?: string | null
+          updated_at?: string
+          upload_date?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          title?: string | null
+          updated_at?: string
+          upload_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      surprise_messages: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          is_unlocked: boolean
+          media_type: string | null
+          media_url: string | null
+          title: string
+          unlock_date: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_unlocked?: boolean
+          media_type?: string | null
+          media_url?: string | null
+          title: string
+          unlock_date: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_unlocked?: boolean
+          media_type?: string | null
+          media_url?: string | null
+          title?: string
+          unlock_date?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
