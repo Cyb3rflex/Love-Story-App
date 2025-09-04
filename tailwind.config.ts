@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -52,6 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				heart: {
+					pink: 'hsl(var(--heart-pink))',
+					red: 'hsl(var(--heart-red))',
+					coral: 'hsl(var(--heart-coral))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +73,15 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'romantic': 'var(--glow-romantic)',
+				'soft': 'var(--shadow-soft)'
+			},
+			backgroundImage: {
+				'gradient-romantic': 'var(--gradient-romantic)',
+				'gradient-sunset': 'var(--gradient-sunset)',
+				'gradient-warm': 'var(--gradient-warm)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -84,11 +99,46 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float-up': {
+					'0%': {
+						transform: 'translateY(100vh) rotate(0deg)',
+						opacity: '0'
+					},
+					'10%': {
+						opacity: '1'
+					},
+					'90%': {
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translateY(-20vh) rotate(360deg)',
+						opacity: '0'
+					}
+				},
+				'pulse-heart': {
+					'0%, 100%': {
+						transform: 'scale(1)'
+					},
+					'50%': {
+						transform: 'scale(1.1)'
+					}
+				},
+				'glow-romantic': {
+					'0%, 100%': {
+						filter: 'drop-shadow(0 0 20px hsl(var(--primary-glow) / 0.3))'
+					},
+					'50%': {
+						filter: 'drop-shadow(0 0 30px hsl(var(--primary-glow) / 0.5))'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float-up': 'float-up 8s linear infinite',
+				'pulse-heart': 'pulse-heart 2s ease-in-out infinite',
+				'glow-romantic': 'glow-romantic 3s ease-in-out infinite'
 			}
 		}
 	},
