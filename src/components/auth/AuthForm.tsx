@@ -15,9 +15,32 @@ const AuthForm = () => {
   const { signIn, signUp } = useAuth();
   const { toast } = useToast();
 
+  const ALLOWED_EMAILS = [
+    'shalomsalome3@gmail.com',
+    'davidchuksdev@gmail.com'
+  ];
+
+  const isEmailAllowed = (email: string) => {
+    return ALLOWED_EMAILS.includes(email.toLowerCase());
+  };
+
+  const showNaughtyToast = () => {
+    toast({
+      title: "😂 NAUGHTY! 👿",
+      description: "Only David and Shalom can access this love sanctuary! 💕 Nice try though! 😈",
+      variant: "destructive"
+    });
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) return;
+
+    // Check if email is allowed
+    if (!isEmailAllowed(email)) {
+      showNaughtyToast();
+      return;
+    }
 
     setLoading(true);
     const { error } = await signIn(email, password);
@@ -40,6 +63,12 @@ const AuthForm = () => {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || !name) return;
+
+    // Check if email is allowed
+    if (!isEmailAllowed(email)) {
+      showNaughtyToast();
+      return;
+    }
 
     setLoading(true);
     const { error } = await signUp(email, password, name);
