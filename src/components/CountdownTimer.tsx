@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
+import { toZonedTime, fromZonedTime } from 'date-fns-tz';
 
 interface TimeLeft {
   days: number;
@@ -12,13 +13,17 @@ const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // Calculate 50 days from now
-    const targetDate = new Date();
+    const NIGERIA_TIMEZONE = 'Africa/Lagos';
+    
+    // Get current Nigeria time and add 50 days
+    const nowInNigeria = toZonedTime(new Date(), NIGERIA_TIMEZONE);
+    const targetDate = new Date(nowInNigeria);
     targetDate.setDate(targetDate.getDate() + 50);
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
+      // Get current Nigeria time for comparison
+      const currentNigeriaTime = toZonedTime(new Date(), NIGERIA_TIMEZONE);
+      const distance = targetDate.getTime() - currentNigeriaTime.getTime();
 
       if (distance > 0) {
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -27,6 +32,8 @@ const CountdownTimer = () => {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     }, 1000);
 
