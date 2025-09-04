@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
-import { toZonedTime, fromZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 
 interface TimeLeft {
   days: number;
@@ -10,30 +10,39 @@ interface TimeLeft {
 }
 
 const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
     const NIGERIA_TIMEZONE = 'Africa/Lagos';
-    
-    // Get current Nigeria time and add 50 days
+
+    // Always start from "today now" in Nigeria time
     const nowInNigeria = toZonedTime(new Date(), NIGERIA_TIMEZONE);
     const targetDate = new Date(nowInNigeria);
-    targetDate.setDate(targetDate.getDate() + 50);
+    targetDate.setDate(targetDate.getDate() + 50); // add 50 days
 
     const timer = setInterval(() => {
-      // Get current Nigeria time for comparison
       const currentNigeriaTime = toZonedTime(new Date(), NIGERIA_TIMEZONE);
       const distance = targetDate.getTime() - currentNigeriaTime.getTime();
 
       if (distance > 0) {
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (distance % (1000 * 60 * 60)) / (1000 * 60)
+        );
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         setTimeLeft({ days, hours, minutes, seconds });
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        clearInterval(timer); // stop once finished
       }
     }, 1000);
 
@@ -47,7 +56,7 @@ const CountdownTimer = () => {
           Until We're Together Again
         </h1>
         <p className="text-lg text-muted-foreground">
-          David & Shalom's Reunion Countdown ✨
+          David & Shalom&apos;s Reunion Countdown ✨
         </p>
       </div>
 
@@ -58,7 +67,10 @@ const CountdownTimer = () => {
           { label: 'Minutes', value: timeLeft.minutes },
           { label: 'Seconds', value: timeLeft.seconds },
         ].map((item) => (
-          <Card key={item.label} className="p-6 bg-gradient-romantic text-primary-foreground shadow-soft">
+          <Card
+            key={item.label}
+            className="p-6 bg-gradient-romantic text-primary-foreground shadow-soft"
+          >
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold animate-glow-romantic">
                 {item.value.toString().padStart(2, '0')}
