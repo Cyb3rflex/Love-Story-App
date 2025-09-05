@@ -13,7 +13,7 @@ export const COUPLE_CONFIG = {
   },
   
   // Important dates
-  relationshipStart: "2024-09-04", // YYYY-MM-DD format
+  relationshipStart: "2025-09-04", // YYYY-MM-DD format
   
   // Countdown settings
   reunionCountdownDays: 50, // How many days to count up to
