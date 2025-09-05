@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { toZonedTime } from 'date-fns-tz';
+import { COUPLE_CONFIG } from '@/config/couple';
 
 interface TimeLeft {
   days: number;
@@ -20,10 +21,10 @@ const CountdownTimer = () => {
   useEffect(() => {
     const NIGERIA_TIMEZONE = 'Africa/Lagos';
 
-    // Fixed target date: 50 days from September 4th, 2024
-    const startDate = new Date('2024-09-04T00:00:00');
+    // Use configured relationship start date and countdown days
+    const startDate = new Date(`${COUPLE_CONFIG.relationshipStart}T00:00:00`);
     const targetDate = new Date(startDate);
-    targetDate.setDate(targetDate.getDate() + 50); // 50 days from Sept 4th
+    targetDate.setDate(targetDate.getDate() + COUPLE_CONFIG.reunionCountdownDays);
     const targetMs = targetDate.getTime();
 
     const timer = setInterval(() => {
@@ -57,7 +58,7 @@ const CountdownTimer = () => {
           Until We're Together Again
         </h1>
         <p className="text-lg text-muted-foreground">
-          David & Shalom&apos;s Reunion Countdown ✨
+          {COUPLE_CONFIG.partner1.name} & {COUPLE_CONFIG.partner2.name}&apos;s Reunion Countdown ✨  
         </p>
       </div>
 
