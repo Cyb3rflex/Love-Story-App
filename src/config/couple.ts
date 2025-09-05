@@ -4,12 +4,12 @@
 export const COUPLE_CONFIG = {
   // Your relationship details
   partner1: {
-    name: "Alex",
-    email: "alex@example.com"
+    name: "David",
+    email: "david@example.com"
   },
   partner2: {
-    name: "Jordan", 
-    email: "jordan@example.com"
+    name: "Shalom", 
+    email: "shalom@example.com"
   },
   
   // Important dates
