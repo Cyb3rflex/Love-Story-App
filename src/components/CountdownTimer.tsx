@@ -20,19 +20,11 @@ const CountdownTimer = () => {
   useEffect(() => {
     const NIGERIA_TIMEZONE = 'Africa/Lagos';
 
-    // Load or initialize a persistent target date (50 days from first visit)
-    let targetMs: number;
-    const savedTarget = localStorage.getItem('reunionTargetMs');
-
-    if (savedTarget) {
-      targetMs = parseInt(savedTarget, 10);
-    } else {
-      const nowInNigeria = toZonedTime(new Date(), NIGERIA_TIMEZONE);
-      const targetDate = new Date(nowInNigeria);
-      targetDate.setDate(targetDate.getDate() + 50); // add 50 days
-      targetMs = targetDate.getTime();
-      localStorage.setItem('reunionTargetMs', String(targetMs));
-    }
+    // Fixed target date: 50 days from September 4th, 2024
+    const startDate = new Date('2024-09-04T00:00:00');
+    const targetDate = new Date(startDate);
+    targetDate.setDate(targetDate.getDate() + 50); // 50 days from Sept 4th
+    const targetMs = targetDate.getTime();
 
     const timer = setInterval(() => {
       const currentNigeriaTime = toZonedTime(new Date(), NIGERIA_TIMEZONE);
