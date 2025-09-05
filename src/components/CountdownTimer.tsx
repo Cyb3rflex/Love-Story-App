@@ -20,14 +20,23 @@ const CountdownTimer = () => {
   useEffect(() => {
     const NIGERIA_TIMEZONE = 'Africa/Lagos';
 
-    // Always start from "today now" in Nigeria time
-    const nowInNigeria = toZonedTime(new Date(), NIGERIA_TIMEZONE);
-    const targetDate = new Date(nowInNigeria);
-    targetDate.setDate(targetDate.getDate() + 50); // add 50 days
+    // Load or initialize a persistent target date (50 days from first visit)
+    let targetMs: number;
+    const savedTarget = localStorage.getItem('reunionTargetMs');
+
+    if (savedTarget) {
+      targetMs = parseInt(savedTarget, 10);
+    } else {
+      const nowInNigeria = toZonedTime(new Date(), NIGERIA_TIMEZONE);
+      const targetDate = new Date(nowInNigeria);
+      targetDate.setDate(targetDate.getDate() + 50); // add 50 days
+      targetMs = targetDate.getTime();
+      localStorage.setItem('reunionTargetMs', String(targetMs));
+    }
 
     const timer = setInterval(() => {
       const currentNigeriaTime = toZonedTime(new Date(), NIGERIA_TIMEZONE);
-      const distance = targetDate.getTime() - currentNigeriaTime.getTime();
+      const distance = targetMs - currentNigeriaTime.getTime();
 
       if (distance > 0) {
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
