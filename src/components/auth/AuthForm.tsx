@@ -144,7 +144,7 @@ const AuthForm = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name (David or Shalom)"
+                    placeholder="Your name (Male or Female)"
                     required
                   />
                 </div>

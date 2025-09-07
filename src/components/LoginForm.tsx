@@ -45,7 +45,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
                   onClick={() => setSelectedUser('David')}
                   className="h-12"
                 >
-                  💙 David
+                  💙 Abdulmuheez
                 </Button>
                 <Button
                   type="button"
@@ -53,7 +53,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
                   onClick={() => setSelectedUser('Shalom')}
                   className="h-12"
                 >
-                  🌸 Shalom
+                  🌸 Khadeejah
                 </Button>
               </div>
             </div>

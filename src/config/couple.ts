@@ -4,19 +4,19 @@
 export const COUPLE_CONFIG = {
   // Your relationship details
   partner1: {
-    name: "David",
-    email: "david@example.com"
+    name: "Abdulmuheez",
+    email: "cybrflex@gmail.com"
   },
   partner2: {
-    name: "Shalom", 
-    email: "shalom@example.com"
+    name: "Khadeejah", 
+    email: "K07303141@gmail.com"
   },
   
   // Important dates
-  relationshipStart: "2025-09-04", // YYYY-MM-DD format
+  relationshipStart: "2025-09-07", // YYYY-MM-DD format
   
   // Countdown settings
-  reunionCountdownDays: 50, // How many days to count up to
+  reunionCountdownDays: 150, // How many days to count up to
   
   // App customization
   appTitle: "Our Love Story",

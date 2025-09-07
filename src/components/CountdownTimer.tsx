@@ -84,9 +84,13 @@ const CountdownTimer = () => {
       </div>
 
       <div className="flex justify-center space-x-2 text-2xl animate-pulse-heart">
+        <span>🌚</span>
         <span>💕</span>
         <span>💖</span>
         <span>💕</span>
+        <span>🥹</span>
+        <span>🤭</span>
+        <span>🥰</span>
       </div>
     </div>
   );
